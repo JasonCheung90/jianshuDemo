@@ -10,6 +10,7 @@ const koajwt = require("koa-jwt");
 const MongoConnect = require("./db");
 const index = require("./routes/index");
 const users = require("./routes/users");
+const upload = require("./routes/upload");
 
 //连接数据库
 MongoConnect();
@@ -51,6 +52,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(upload.routes(), upload.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {

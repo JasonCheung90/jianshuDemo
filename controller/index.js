@@ -3,21 +3,15 @@ const {
   userSignUp,
   userVerify,
   userUpdatePassWord,
-  userAdd,
-  userUpdate,
-  userDelete,
-  userFindOne,
-  userFind,
+  userUpdateInfo,
 } = require("./users");
 
+const { uploadMethod } = require("./upload");
 module.exports = {
   userLogin,
   userSignUp,
   userVerify,
   userUpdatePassWord,
-  userAdd,
-  userUpdate,
-  userDelete,
-  userFindOne,
-  userFind,
+  userUpdateInfo,
+  uploadMethod,
 };

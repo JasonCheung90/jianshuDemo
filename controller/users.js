@@ -6,16 +6,13 @@ const {
   login,
   userVerifyFindOne,
   updataPassword,
-  find,
-  update,
-  del,
-  findOne,
+  updatePersonal,
 } = require("../utils");
 
 // 用户注册
 const userSignUp = async (ctx) => {
   const { userName, passWord } = ctx.request.body;
-  const result = await signUpFind(userModel, ctx, { userName });
+  const result = await signUpFind(userModel, { userName });
 
   let isExist = result ? true : false;
 
@@ -45,19 +42,25 @@ const userVerify = async (ctx) => {
 // 修改用户密码
 const userUpdatePassWord = async (ctx) => {
   const { userName, passWord } = ctx.request.body;
-  await updataPassword(userModel, ctx, { userName, passWord });
+  await updataPassword(userModel, ctx, { userName }, { passWord });
 };
 
-// 添加系统用户
-/* const userAdd = async (ctx) => {
-  let { userName, passWord } = ctx.request.body;
-  await add(userModel, ctx, { userName, passWord });
-}; */
-
-//修改系统用户
-const userUpdate = async (ctx) => {
-  let { userName, passWord, _id } = ctx.request.body;
-  await update(userModel, ctx, { _id }, { userName, passWord });
+//修改用户个人信息
+const userUpdateInfo = async (ctx) => {
+  const {
+    avatar = "",
+    gender = "",
+    _id,
+    phone = "",
+    email = "",
+    desc = "",
+  } = ctx.request.body;
+  await updatePersonal(
+    userModel,
+    ctx,
+    { _id },
+    { avatar, gender, phone, email, desc }
+  );
 };
 
 // 删除系统用户
@@ -79,12 +82,9 @@ const userFindOne = async (ctx) => {
 };
 
 module.exports = {
-  userDelete,
-  userUpdate,
-  userFind,
-  userFindOne,
   userLogin,
   userSignUp,
   userVerify,
   userUpdatePassWord,
+  userUpdateInfo,
 };

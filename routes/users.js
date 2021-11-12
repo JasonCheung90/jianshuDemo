@@ -1,13 +1,10 @@
 const router = require("koa-router")();
 const {
-  userDelete,
-  userFind,
-  userUpdate,
-  userFindOne,
   userLogin,
   userSignUp,
   userVerify,
   userUpdatePassWord,
+  userUpdateInfo,
 } = require("../controller");
 
 router.prefix("/users");
@@ -24,16 +21,16 @@ router.post("/verify", userVerify);
 //用户密码修改
 router.post("/update/password", userUpdatePassWord);
 
-// 修改系统用户
-router.post("/update", userUpdate);
+// 用户资料修改
+router.post("/update/personal", userUpdateInfo);
 
-// 删除系统用户
+/* // 删除系统用户
 router.delete("/del", userDelete);
 
 // 查询所有系统用户
 router.get("/find", userFind);
 
 // 查询单个系统用户
-router.get("/find/:id", userFindOne);
+router.get("/find/:id", userFindOne); */
 
 module.exports = router;

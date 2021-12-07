@@ -169,19 +169,19 @@ const updatePersonal = (Model, ctx, conditions, doc) =>
       if (result.n > 0) {
         ctx.body = {
           code: 200,
-          msg: "资料修改成功",
+          msg: "资料更新成功",
         };
       } else {
         ctx.body = {
           code: 300,
-          msg: "资料修改失败",
+          msg: "资料更新失败",
         };
       }
     })
     .catch((error) => {
       ctx.body = {
         code: 500,
-        msg: "资料修改异常",
+        msg: "资料更新异常",
         err: error,
       };
     });
